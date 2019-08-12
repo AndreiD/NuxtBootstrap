@@ -6,7 +6,7 @@ export default {
   ** Headers of the page
   */
   head: {
-    titleTemplate: 'NuxtBootstrap',
+    titleTemplate: 'Your website title is here...',
     title: process.env.npm_package_name || '',
     meta: [
       { charset: 'utf-8' },
@@ -14,7 +14,7 @@ export default {
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/x-icon', href: '/_nuxt/assets/icon.png' },
       {
         rel: 'stylesheet',
         href:
@@ -41,11 +41,10 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-    '@nuxtjs/vuetify',
-    // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/eslint-module',
-    '@nuxtjs/toast'
+    '@nuxtjs/toast',
+    '@nuxtjs/vuetify'
   ],
   toast: {
     position: 'top-right',
@@ -64,14 +63,11 @@ export default {
   ** https://github.com/nuxt-community/vuetify-module
   */
   vuetify: {
-    theme: {
-      primary: colors.blue.darken2,
-      accent: colors.grey.darken3,
-      secondary: colors.amber.darken3,
-      info: colors.teal.lighten1,
-      warning: colors.amber.base,
-      error: colors.deepOrange.accent4,
-      success: colors.green.accent3
+    customVariables: ["~/assets/variables.scss"],
+    optionsPath: "./vuetify.options.js",
+    treeShake: true,
+    defaultAssets: {
+      font: false
     }
   },
   /*
