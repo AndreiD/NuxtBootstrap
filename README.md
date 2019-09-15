@@ -22,3 +22,5 @@ A Nuxt.js bootstrap project.
 ## Build Setup
 
 If you're looking at this repo, you probably know how to run a nuxt project. If not, checkout [Nuxt.js docs](https://nuxtjs.org).
+
+### License: MIT
