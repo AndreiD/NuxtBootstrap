@@ -1,47 +1,72 @@
 <template>
-  <v-app dark>
-    <v-layout column justify-center align-center>
-      <v-flex xs12 sm8 md6>
-        <div style="text-align: center; min-width:300px">
-          <div v-if="error.statusCode === 404">
-            <h1>{{ pageNotFound }}</h1>
-            <p>
-              Check that you typed the address correctly, go back to your previous page
-              <br />or try using the search to find something specific
-            </p>
+  <v-app style="background: #12171a;">
+    <template v-if="error.statusCode === 404">
+      <v-container fluid>
+        <v-layout align-center justify-center>
+          <div class="text-md-center">
+            <h1>404</h1>
+            <h2 class="white--text my-3 headline">Sorry, page not found</h2>
+            <div>
+              <v-btn color="primary" @click="goHome">Go Home</v-btn>
+            </div>
           </div>
-          <div v-else>
-            <h1>{{ otherError }}</h1>
+        </v-layout>
+      </v-container>
+    </template>
+    <template v-if="error.statusCode === 403">
+      <v-container fluid>
+        <v-layout align-center justify-center>
+          <div class="mr-3 hidden-sm-and-down">
+            <img src="@/static/error/403.svg" alt />
           </div>
-          <v-spacer />
-          <v-btn class="primary" to="/" nuxt>go to home page</v-btn>
-        </div>
-      </v-flex>
-    </v-layout>
+          <div class="text-md-center">
+            <h1>403</h1>
+            <h2 class="white--text my-3 headline">Sorry, access denied.</h2>
+            <div>
+              <v-btn color="primary" @click="goHome">Go Home</v-btn>
+            </div>
+          </div>
+        </v-layout>
+      </v-container>
+    </template>
+    <template v-if="error.statusCode === 500">
+      <v-container fluid>
+        <v-layout align-center justify-center row>
+          <div class="mr-3 hidden-sm-and-down">
+            <img src="@/static/error/500.svg" alt />
+          </div>
+          <div class="text-md-center">
+            <h1>500</h1>
+            <h2 class="white--text my-3 headline">Fatal Error Encountered!</h2>
+            <div>
+              <v-btn color="primary" @click="goHome">Go Home</v-btn>
+            </div>
+          </div>
+        </v-layout>
+      </v-container>
+    </template>
   </v-app>
 </template>
 
 <script>
 export default {
-  layout: "empty",
-  props: {
-    error: {
-      type: Object,
-      default: null
+  props: ["error"],
+  methods: {
+    goHome() {
+      this.$router.push({ path: "/" });
     }
   },
-  head() {
-    const title =
-      this.error.statusCode === 404 ? this.pageNotFound : this.otherError;
-    return {
-      title
-    };
-  },
-  data() {
-    return {
-      pageNotFound: "404 Not Found",
-      otherError: "An error occurred"
-    };
-  }
+  layout: "default" // you can set a custom layout for the error page
 };
 </script>
+
+<style scoped lang="css">
+h1 {
+  font-size: 150px;
+  line-height: 150px;
+  font-weight: 700;
+  color: #dedede;
+  text-shadow: rgba(61, 61, 61, 0.3) 1px 1px, rgba(61, 61, 61, 0.2) 2px 2px,
+    rgba(61, 61, 61, 0.3) 3px 3px;
+}
+</style>

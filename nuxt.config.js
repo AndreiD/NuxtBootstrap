@@ -29,8 +29,7 @@ export default {
   /*
   ** Global CSS
   */
-  css: [
-  ],
+  css: ['~/assets/main.css'],
   /*
   ** Plugins to load before mounting the App
   */
@@ -44,11 +43,34 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/eslint-module',
     '@nuxtjs/toast',
+    '@nuxtjs/auth',
+    '@nuxtjs/recaptcha',
     '@nuxtjs/vuetify'
   ],
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: '/user/login', method: 'post', propertyName: 'token' },
+          user: { url: '/user/me', method: 'get', propertyName: 'email' }
+        },
+        tokenRequired: true,
+        tokenType: 'Token'
+      }
+    }
+  },
+  router: {
+    middleware: ['auth']
+  },
   toast: {
     position: 'top-right',
     duration: 3000
+  },
+  recaptcha: {
+    hideBadge: true, // Hide badge element (v3)
+    language: "en",   // Recaptcha language (v2)
+    siteKey: "xxxxxxxxxxxxxxxxxxxxxx",    // Site key for requests
+    version: 3
   },
   /*
   ** Axios module configuration
@@ -64,11 +86,7 @@ export default {
   */
   vuetify: {
     customVariables: ["~/assets/variables.scss"],
-    optionsPath: "./vuetify.options.js",
-    treeShake: true,
-    defaultAssets: {
-      font: false
-    }
+    optionsPath: "./vuetify.options.js"
   },
   /*
   ** Build configuration

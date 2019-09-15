@@ -14,11 +14,16 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar dense fixed clipped-left app>
+    <v-app-bar fixed clipped-left app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <img src="@/assets/icon.png" style="height: 40px;" />
-      <v-toolbar-title v-text="title" />
-      <v-spacer />
+      <v-toolbar-title style="width: 150px" class="ml-0 pl-4">
+        <nuxt-link style="text-decoration:none" to="/">
+          <span class="display-1" style="color:#00bfa5">My</span>
+          <span class="display-1" style="color:#ff5722">App</span>
+        </nuxt-link>
+      </v-toolbar-title>
+
+      <div class="flex-grow-1"></div>
       <v-btn icon color="primary" @click="$vuetify.theme.dark = !$vuetify.theme.dark">
         <v-icon>mdi-theme-light-dark</v-icon>
       </v-btn>
@@ -54,8 +59,8 @@ export default {
         },
         {
           icon: "account_circle",
-          title: "Users",
-          to: "/users"
+          title: "Faq",
+          to: "/faq"
         }
       ],
       miniVariant: false,
@@ -66,3 +71,33 @@ export default {
   }
 };
 </script>
+<style scoped>
+#styled-input {
+  height: 48px;
+  width: 48px;
+}
+.styled-input label[for] {
+  height: 48px;
+}
+.v-navigation-drawer > .list:not(.list--dense) .list__tile {
+  font-size: 17px;
+}
+.avatar {
+  max-width: 75px;
+}
+/* .list__tile--active.list__tile.list__tile--link {
+} */
+a.nuxt-link-exact-active.list__tile--active.list__tile.list__tile--link {
+  font-weight: 900 !important;
+  color: #3f51b5 !important;
+}
+.v-list-item {
+  border-left: 10px solid transparent;
+}
+.v-list-item--active {
+  border-left: 10px solid #ff5722;
+}
+.v-list-item--active .v-icon {
+  color: #ff5722 !important;
+}
+</style>

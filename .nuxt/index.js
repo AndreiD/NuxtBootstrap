@@ -1,22 +1,37 @@
 import Vue from 'vue'
 import Meta from 'vue-meta'
+import ClientOnly from 'vue-client-only'
+import NoSsr from 'vue-no-ssr'
 import { createRouter } from './router.js'
-import NoSsr from './components/no-ssr.js'
 import NuxtChild from './components/nuxt-child.js'
 import NuxtError from '../layouts/error.vue'
 import Nuxt from './components/nuxt.js'
 import App from './App.js'
 import { setContext, getLocation, getRouteData, normalizeError } from './utils'
+import { createStore } from './store.js'
 
 /* Plugins */
 
-import nuxt_plugin_plugin_05f37bfc from 'nuxt_plugin_plugin_05f37bfc' // Source: ./vuetify/plugin.js (mode: 'all')
-import nuxt_plugin_toast_e2ab5012 from 'nuxt_plugin_toast_e2ab5012' // Source: ./toast.js (mode: 'client')
-import nuxt_plugin_axios_7b0be970 from 'nuxt_plugin_axios_7b0be970' // Source: ./axios.js (mode: 'all')
+import nuxt_plugin_plugin_b9eed5a8 from 'nuxt_plugin_plugin_b9eed5a8' // Source: ./vuetify/plugin.js (mode: 'all')
+import nuxt_plugin_recaptcha_00cb9e87 from 'nuxt_plugin_recaptcha_00cb9e87' // Source: ./recaptcha.js (mode: 'all')
+import nuxt_plugin_toast_2da9ae72 from 'nuxt_plugin_toast_2da9ae72' // Source: ./toast.js (mode: 'client')
+import nuxt_plugin_axios_1cfadc18 from 'nuxt_plugin_axios_1cfadc18' // Source: ./axios.js (mode: 'all')
 import nuxt_plugin_axios_3566aa80 from 'nuxt_plugin_axios_3566aa80' // Source: ../plugins/axios (mode: 'all')
+import nuxt_plugin_plugin_f37b1158 from 'nuxt_plugin_plugin_f37b1158' // Source: ./auth/plugin.js (mode: 'all')
 
-// Component: <NoSsr>
-Vue.component(NoSsr.name, NoSsr)
+// Component: <ClientOnly>
+Vue.component(ClientOnly.name, ClientOnly)
+// TODO: Remove in Nuxt 3: <NoSsr>
+Vue.component(NoSsr.name, {
+  ...NoSsr,
+  render(h, ctx) {
+    if (process.client && !NoSsr._warned) {
+      NoSsr._warned = true
+      console.warn(`<no-ssr> has been deprecated and will be removed in Nuxt 3, please use <client-only> instead`)
+    }
+    return NoSsr.render(h, ctx)
+  }
+})
 
 // Component: <NuxtChild>
 Vue.component(NuxtChild.name, NuxtChild)
@@ -40,13 +55,21 @@ const defaultTransition = {"name":"page","mode":"out-in","appear":false,"appearC
 async function createApp(ssrContext) {
   const router = await createRouter(ssrContext)
 
+  const store = createStore(ssrContext)
+  // Add this.$router into store actions/mutations
+  store.$router = router
+
+  // Fix SSR caveat https://github.com/nuxt/nuxt.js/issues/3757#issuecomment-414689141
+  const registerModule = store.registerModule
+  store.registerModule = (path, rawModule, options) => registerModule.call(store, path, rawModule, Object.assign({ preserveState: process.client }, options))
+
   // Create Root instance
 
   // here we inject the router and store to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
   const app = {
     router,
-
+    store,
     nuxt: {
       defaultTransition,
       transitions: [ defaultTransition ],
@@ -84,6 +107,9 @@ async function createApp(ssrContext) {
     ...App
   }
 
+  // Make app available into store via this.app
+  store.app = app
+
   const next = ssrContext ? ssrContext.next : location => app.router.push(location)
   // Resolve route
   let route
@@ -99,7 +125,7 @@ async function createApp(ssrContext) {
     route,
     next,
     error: app.nuxt.error.bind(app),
-
+    store,
     payload: ssrContext ? ssrContext.payload : undefined,
     req: ssrContext ? ssrContext.req : undefined,
     res: ssrContext ? ssrContext.res : undefined,
@@ -113,6 +139,9 @@ async function createApp(ssrContext) {
     key = '$' + key
     // Add into app
     app[key] = value
+
+    // Add into store
+    store[key] = app[key]
 
     // Check if plugin not already installed
     const installKey = '__nuxt_' + key + '_installed__'
@@ -130,22 +159,37 @@ async function createApp(ssrContext) {
     })
   }
 
+  if (process.client) {
+    // Replace store state before plugins execution
+    if (window.__NUXT__ && window.__NUXT__.state) {
+      store.replaceState(window.__NUXT__.state)
+    }
+  }
+
   // Plugin execution
 
-  if (typeof nuxt_plugin_plugin_05f37bfc === 'function') {
-    await nuxt_plugin_plugin_05f37bfc(app.context, inject)
+  if (typeof nuxt_plugin_plugin_b9eed5a8 === 'function') {
+    await nuxt_plugin_plugin_b9eed5a8(app.context, inject)
   }
 
-  if (process.client && typeof nuxt_plugin_toast_e2ab5012 === 'function') {
-    await nuxt_plugin_toast_e2ab5012(app.context, inject)
+  if (typeof nuxt_plugin_recaptcha_00cb9e87 === 'function') {
+    await nuxt_plugin_recaptcha_00cb9e87(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_axios_7b0be970 === 'function') {
-    await nuxt_plugin_axios_7b0be970(app.context, inject)
+  if (process.client && typeof nuxt_plugin_toast_2da9ae72 === 'function') {
+    await nuxt_plugin_toast_2da9ae72(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_axios_1cfadc18 === 'function') {
+    await nuxt_plugin_axios_1cfadc18(app.context, inject)
   }
 
   if (typeof nuxt_plugin_axios_3566aa80 === 'function') {
     await nuxt_plugin_axios_3566aa80(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_plugin_f37b1158 === 'function') {
+    await nuxt_plugin_plugin_f37b1158(app.context, inject)
   }
 
   // If server-side, wait for async component to be resolved first
@@ -167,7 +211,7 @@ async function createApp(ssrContext) {
 
   return {
     app,
-
+    store,
     router
   }
 }

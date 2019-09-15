@@ -33,6 +33,7 @@ if (!global.fetch) { global.fetch = fetch }
 let _lastPaths = []
 let app
 let router
+let store
 
 // Try to rehydrate SSR data from window
 const NUXT = window.__NUXT__ || {}
@@ -134,15 +135,21 @@ async function loadAsyncComponents(to, from, next) {
   }
 
   try {
-    const Components = await resolveRouteComponents(to)
+    const Components = await resolveRouteComponents(
+      to,
+      (Component, instance) => ({ Component, instance })
+    )
 
     if (!this._pathChanged && this._queryChanged) {
       // Add a marker on each component that it needs to refresh or not
-      const startLoader = Components.some((Component) => {
+      const startLoader = Components.some(({Component, instance}) => {
         const watchQuery = Component.options.watchQuery
-        if (watchQuery === true) return true
-        if (Array.isArray(watchQuery)) {
+        if (watchQuery === true) {
+          return true
+        } else if (Array.isArray(watchQuery)) {
           return watchQuery.some(key => this._diffQuery[key])
+        } else if (typeof watchQuery === 'function') {
+          return watchQuery.apply(instance, [to.query, from.query])
         }
         return false
       })
@@ -196,7 +203,7 @@ function resolveComponents(router) {
 }
 
 function callMiddleware(Components, context, layout) {
-  let midd = []
+  let midd = ["auth"]
   let unknownMiddleware = false
 
   // If layout is undefined, only call global middleware
@@ -626,6 +633,7 @@ async function mountApp(__app) {
   // Set global variables
   app = __app.app
   router = __app.router
+  store = __app.store
 
   // Resolve route components
   const Components = await Promise.all(resolveComponents(router))

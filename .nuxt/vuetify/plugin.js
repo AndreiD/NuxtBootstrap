@@ -1,8 +1,10 @@
 import Vue from 'vue'
-import Vuetify from 'vuetify/lib'
+import Vuetify from 'vuetify'
+
 import options from './options'
 
-Vue.use(Vuetify)
+Vue.use(Vuetify, {
+})
 
 export default (ctx) => {
   const vuetifyOptions = typeof options === 'function' ? options(ctx) : options

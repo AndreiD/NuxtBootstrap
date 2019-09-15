@@ -8,7 +8,7 @@
             height="200px"
             src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
           >
-            <v-card-title class="align-end fill-height">Top 10 Australian beaches</v-card-title>
+            <v-card-title class="align-end fill-height">content...</v-card-title>
           </v-img>
 
           <v-card-text>
@@ -30,3 +30,12 @@
     </v-layout>
   </v-container>
 </template>
+<script>
+export default {
+  auth: false,
+  data: () => ({
+    variable: null
+  }),
+  mounted() {}
+};
+</script>
