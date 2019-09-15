@@ -2,7 +2,9 @@
 
 A Nuxt.js bootstrap project.
 
-### My opinion on nuxt & vuetify
+I'm not a front-end developer, but from time to time I build front-end stuff. Since I don't want to start from 0, here's my initial setup.
+
+If you find it usefull, fell free to use it to your liking.
 
 ### What's inside
 
