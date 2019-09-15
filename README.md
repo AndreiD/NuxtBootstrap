@@ -2,7 +2,7 @@
 
 A Nuxt.js bootstrap project.
 
-### My opinion on vuetify.
+### My opinion on nuxt & vuetify
 
 ### What's inside
 
