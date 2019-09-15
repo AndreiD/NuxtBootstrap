@@ -2,6 +2,7 @@
 
 A Nuxt.js bootstrap project.
 
+<img src="https://raw.githubusercontent.com/AndreiD/NuxtBootstrap/master/assets/howitlooks.png" alt="how it looks"/>
 
 ## Build Setup
 
