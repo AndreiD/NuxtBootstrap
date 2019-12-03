@@ -1,4 +1,3 @@
-
 <template>
   <v-app>
     <v-navigation-drawer v-model="drawer" fixed clipped app>
@@ -14,7 +13,7 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar fixed clipped-left app>
+    <v-app-bar fixed clipped-left app elevation="0">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title style="width: 150px" class="ml-0 pl-4">
         <nuxt-link style="text-decoration:none" to="/">
@@ -22,16 +21,13 @@
           <span class="display-1" style="color:#ff5722">App</span>
         </nuxt-link>
       </v-toolbar-title>
-
       <div class="flex-grow-1"></div>
-      <v-btn icon color="primary" @click="$vuetify.theme.dark = !$vuetify.theme.dark">
-        <v-icon>mdi-theme-light-dark</v-icon>
-      </v-btn>
+      <v-btn @click="goToUrl('#')" class="ma-2 text" outlined>write</v-btn>
+      <v-btn @click="goToUrl('#')" class="ma-2" outlined>sign up</v-btn>
+      <v-btn @click="goToUrl('#')" class="ma-2 primary">sign in</v-btn>
     </v-app-bar>
     <v-content>
-      <v-container>
-        <nuxt />
-      </v-container>
+      <nuxt />
     </v-content>
     <v-footer :fixed="fixed" app>
       <span>&nbsp;YourCompany &copy; 2019</span>
@@ -68,6 +64,14 @@ export default {
       rightDrawer: false,
       title: "Vuetify.js"
     };
+  },
+  methods: {
+    goToUrl(url) {
+      this.$router.push(url);
+    },
+    goToExternalUrl(url) {
+      window.open(url, "_blank");
+    }
   }
 };
 </script>
@@ -89,15 +93,12 @@ export default {
 } */
 a.nuxt-link-exact-active.list__tile--active.list__tile.list__tile--link {
   font-weight: 900 !important;
-  color: #3f51b5 !important;
 }
 .v-list-item {
   border-left: 10px solid transparent;
 }
 .v-list-item--active {
+  color: #333;
   border-left: 10px solid #ff5722;
-}
-.v-list-item--active .v-icon {
-  color: #ff5722 !important;
 }
 </style>

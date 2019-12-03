@@ -1,41 +1,41 @@
 {
-  "name": "nuxtbootstrap",
-  "version": "1.0.0",
-  "description": "a nuxt.js bootstrap project",
-  "author": "Dan Ξ",
-  "private": true,
-  "scripts": {
-    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "precommit": "npm run lint",
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate"
-  },
-  "dependencies": {
-    "@nuxtjs/auth": "^4.8.4",
-    "@nuxtjs/recaptcha": "^0.5.3",
-    "@nuxtjs/axios": "5.6.0",
-    "@nuxtjs/pwa": "2.6.0",
-    "@nuxtjs/toast": "3.3.0",
-    "nuxt": "2.10.2"
-  },
-  "devDependencies": {
-    "@nuxtjs/vuetify": "^1.9.0",
-    "@nuxtjs/eslint-config": "^1.1.2",
-    "@nuxtjs/eslint-module": "^1.1.0",
-    "babel-eslint": "^10.0.3",
-    "eslint": "^6.4.0",
-    "eslint-config-standard": ">=14.1.0",
-    "eslint-plugin-import": ">=2.18.2",
-    "eslint-plugin-jest": ">=22.17.0",
-    "eslint-plugin-node": ">=10.0.0",
-    "eslint-plugin-nuxt": ">=0.4.3",
-    "eslint-plugin-promise": ">=4.2.1",
-    "eslint-plugin-standard": ">=4.0.1",
-    "eslint-plugin-vue": "^5.2.3",
-    "nodemon": "^1.19.2",
-    "stylus": "^0.54.7",
-    "stylus-loader": "^3.0.2"
-  }
+    "name": "nuxtbootstrap",
+    "version": "1.0.0",
+    "description": "a nuxt.js bootstrap project",
+    "author": "Dan Ξ",
+    "private": true,
+    "scripts": {
+        "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+        "precommit": "npm run lint",
+        "dev": "nuxt",
+        "build": "nuxt build",
+        "start": "nuxt start",
+        "generate": "nuxt generate"
+    },
+    "dependencies": {
+        "@nuxtjs/auth": "^4.8.4",
+        "@nuxtjs/recaptcha": "^0.6.1",
+        "@nuxtjs/axios": "5.8.0",
+        "@nuxtjs/pwa": "2.6.0",
+        "@nuxtjs/toast": "3.3.0",
+        "nuxt": "2.10.2"
+    },
+    "devDependencies": {
+        "@nuxtjs/vuetify": "^1.9.0",
+        "@nuxtjs/eslint-config": "^2.0.0",
+        "@nuxtjs/eslint-module": "^1.1.0",
+        "babel-eslint": "^10.0.3",
+        "eslint": "^6.7.2",
+        "eslint-config-standard": ">=14.1.0",
+        "eslint-plugin-import": ">=2.18.2",
+        "eslint-plugin-jest": ">=23.1.1",
+        "eslint-plugin-node": ">=10.0.0",
+        "eslint-plugin-nuxt": ">=0.5.0",
+        "eslint-plugin-promise": ">=4.2.1",
+        "eslint-plugin-standard": ">=4.0.1",
+        "eslint-plugin-vue": "^6.0.1",
+        "nodemon": "^2.0.1",
+        "stylus": "^0.54.7",
+        "stylus-loader": "^3.0.2"
+    }
 }
