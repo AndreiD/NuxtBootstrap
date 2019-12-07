@@ -1,3 +1,3 @@
 # nuxtbootstrap :mushroom:
 
-stay away!
+my own nuxt starting boilerplate...
