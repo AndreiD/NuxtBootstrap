@@ -13,29 +13,29 @@
         "generate": "nuxt generate"
     },
     "dependencies": {
-        "@nuxtjs/auth": "^4.8.4",
-        "@nuxtjs/recaptcha": "^0.6.1",
-        "@nuxtjs/axios": "5.8.0",
-        "@nuxtjs/pwa": "2.6.0",
-        "@nuxtjs/toast": "3.3.0",
-        "nuxt": "2.10.2"
+        "@nuxtjs/auth": "^4.9.1",
+        "@nuxtjs/recaptcha": "^0.6.2",
+        "@nuxtjs/axios": "5.12.2",
+        "@nuxtjs/pwa": "3.2.2",
+        "@nuxtjs/toast": "3.3.1",
+        "nuxt": "2.14.7"
     },
     "devDependencies": {
-        "@nuxtjs/vuetify": "^1.9.1",
-        "@nuxtjs/eslint-config": "^2.0.0",
-        "@nuxtjs/eslint-module": "^1.1.0",
-        "babel-eslint": "^10.0.3",
-        "eslint": "^6.7.2",
-        "eslint-config-standard": ">=14.1.0",
-        "eslint-plugin-import": ">=2.18.2",
-        "eslint-plugin-jest": ">=23.1.1",
-        "eslint-plugin-node": ">=10.0.0",
-        "eslint-plugin-nuxt": ">=0.5.0",
+        "@nuxtjs/vuetify": "^1.11.2",
+        "@nuxtjs/eslint-config": "^4.0.0",
+        "@nuxtjs/eslint-module": "^3.0.0",
+        "babel-eslint": "^10.1.0",
+        "eslint": "^7.11.0",
+        "eslint-config-standard": ">=15.0.0",
+        "eslint-plugin-import": ">=2.22.1",
+        "eslint-plugin-jest": ">=24.1.0",
+        "eslint-plugin-node": ">=11.1.0",
+        "eslint-plugin-nuxt": ">=1.0.0",
         "eslint-plugin-promise": ">=4.2.1",
-        "eslint-plugin-standard": ">=4.0.1",
-        "eslint-plugin-vue": "^6.0.1",
-        "nodemon": "^2.0.1",
-        "stylus": "^0.54.7",
-        "stylus-loader": "^3.0.2"
+        "eslint-plugin-standard": ">=4.0.2",
+        "eslint-plugin-vue": "^7.1.0",
+        "nodemon": "^2.0.6",
+        "stylus": "^0.54.8",
+        "stylus-loader": "^4.1.1"
     }
 }
