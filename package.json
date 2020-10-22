@@ -5,7 +5,8 @@
     "author": "Dan Ξ",
     "private": true,
     "scripts": {
-        "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+        "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
+        "lint": "npm run lint:js",
         "precommit": "npm run lint",
         "dev": "nuxt",
         "build": "nuxt build",
@@ -18,7 +19,11 @@
         "@nuxtjs/axios": "5.12.2",
         "@nuxtjs/pwa": "3.2.2",
         "@nuxtjs/toast": "3.3.1",
-        "nuxt": "2.14.7"
+        "nuxt": "2.14.7",
+        "nuxt-i18n": "^6.15.1",
+        "puppeteer": "^5.2.1",
+        "sha.js": "^2.4.11",
+        "timeago.js": "^4.0.2"
     },
     "devDependencies": {
         "@nuxtjs/vuetify": "^1.11.2",
@@ -36,6 +41,9 @@
         "eslint-plugin-vue": "^7.1.0",
         "nodemon": "^2.0.6",
         "stylus": "^0.54.8",
-        "stylus-loader": "^4.1.1"
+        "stylus-loader": "^4.1.1",
+        "faker": "^4.1.0",
+        "jest": "^26.4.2",
+        "jest-puppeteer": "^4.4.0"
     }
 }

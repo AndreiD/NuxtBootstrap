@@ -2,7 +2,13 @@
   <v-app>
     <v-navigation-drawer v-model="drawer" fixed clipped app>
       <v-list>
-        <v-list-item v-for="(item, i) in items" :key="i" :to="item.to" link exact>
+        <v-list-item
+          v-for="(item, i) in items"
+          :key="i"
+          :to="item.to"
+          link
+          exact
+        >
           <v-list-item-action>
             <v-icon class="mr-2" right>{{ item.icon }}</v-icon>
           </v-list-item-action>
@@ -16,9 +22,9 @@
     <v-app-bar fixed clipped-left app elevation="0">
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title style="width: 150px" class="ml-0 pl-4">
-        <nuxt-link style="text-decoration:none" to="/">
-          <span class="display-1" style="color:#00bfa5">My</span>
-          <span class="display-1" style="color:#ff5722">App</span>
+        <nuxt-link style="text-decoration: none" to="/">
+          <span class="display-1" style="color: #00bfa5">My</span>
+          <span class="display-1" style="color: #ff5722">App</span>
         </nuxt-link>
       </v-toolbar-title>
       <div class="flex-grow-1"></div>
@@ -26,9 +32,9 @@
       <v-btn @click="goToUrl('#')" class="ma-2" outlined>sign up</v-btn>
       <v-btn @click="goToUrl('#')" class="ma-2 primary">sign in</v-btn>
     </v-app-bar>
-    <v-content>
+    <v-main>
       <nuxt />
-    </v-content>
+    </v-main>
     <v-footer :fixed="fixed" app>
       <span>&nbsp;YourCompany &copy; 2019</span>
     </v-footer>
@@ -46,23 +52,23 @@ export default {
         {
           icon: "apps",
           title: "Welcome",
-          to: "/"
+          to: "/",
         },
         {
           icon: "bubble_chart",
           title: "Inspire",
-          to: "/inspire"
+          to: "/inspire",
         },
         {
           icon: "account_circle",
           title: "Faq",
-          to: "/faq"
-        }
+          to: "/faq",
+        },
       ],
       miniVariant: false,
       right: false,
       rightDrawer: false,
-      title: "Vuetify.js"
+      title: "Vuetify.js",
     };
   },
   methods: {
@@ -71,8 +77,8 @@ export default {
     },
     goToExternalUrl(url) {
       window.open(url, "_blank");
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>
