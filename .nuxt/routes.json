@@ -3,36 +3,42 @@
     "name": "faq",
     "path": "/faq",
     "component": "/home/me/workspace_learn/NuxtBootstrap/pages/faq.vue",
-    "chunkName": "pages/faq"
+    "chunkName": "pages/faq",
+    "_name": "_719783ec"
   },
   {
     "name": "inspire",
     "path": "/inspire",
     "component": "/home/me/workspace_learn/NuxtBootstrap/pages/inspire.vue",
-    "chunkName": "pages/inspire"
+    "chunkName": "pages/inspire",
+    "_name": "_4c8ed464"
   },
   {
     "name": "login",
     "path": "/login",
     "component": "/home/me/workspace_learn/NuxtBootstrap/pages/login.vue",
-    "chunkName": "pages/login"
+    "chunkName": "pages/login",
+    "_name": "_4626d9dd"
   },
   {
     "name": "logout",
     "path": "/logout",
     "component": "/home/me/workspace_learn/NuxtBootstrap/pages/logout.vue",
-    "chunkName": "pages/logout"
+    "chunkName": "pages/logout",
+    "_name": "_68752b74"
   },
   {
     "name": "users",
     "path": "/users",
     "component": "/home/me/workspace_learn/NuxtBootstrap/pages/users/index.vue",
-    "chunkName": "pages/users/index"
+    "chunkName": "pages/users/index",
+    "_name": "_794bea7f"
   },
   {
     "name": "index",
     "path": "/",
     "component": "/home/me/workspace_learn/NuxtBootstrap/pages/index.vue",
-    "chunkName": "pages/index"
+    "chunkName": "pages/index",
+    "_name": "_7c7f36c6"
   }
 ]

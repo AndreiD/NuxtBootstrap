@@ -1,15 +1,17 @@
 export default {
-  mode: 'spa',
-  /*
-  ** Headers of the page
-  */
+  ssr: false,
+  target: 'static',
   head: {
     titleTemplate: 'Your website title is here...',
     title: process.env.npm_package_name || '',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      {
+        hid: 'description',
+        name: 'description',
+        content: process.env.npm_package_description || ''
+      }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/_nuxt/assets/icon.png' },
@@ -20,31 +22,23 @@ export default {
       }
     ]
   },
-  /*
-  ** Customize the progress-bar color
-  */
   loading: { color: '#fff' },
-  /*
-  ** Global CSS
-  */
   css: ['~/assets/main.css'],
-  /*
-  ** Plugins to load before mounting the App
-  */
-  plugins: [
-    '~/plugins/axios'
-  ],
-  /*
-  ** Nuxt.js modules
-  */
+  plugins: ['~/plugins/axios'],
+  buildModules: ['@nuxtjs/vuetify'],
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/eslint-module',
     '@nuxtjs/toast',
     '@nuxtjs/auth',
     '@nuxtjs/recaptcha',
-    '@nuxtjs/vuetify'
+    '@nuxtjs/pwa'
   ],
+  pwa: {
+    manifest: {
+      lang: 'en'
+    }
+  },
   auth: {
     strategies: {
       local: {
@@ -66,35 +60,20 @@ export default {
   },
   recaptcha: {
     hideBadge: true, // Hide badge element (v3)
-    language: "en",   // Recaptcha language (v2)
-    siteKey: "xxxxxxxxxxxxxxxxxxxxxx",    // Site key for requests
+    language: 'en', // Recaptcha language (v2)
+    siteKey: 'xxxxxxxxxxxxxxxxxxxxxx', // Site key for requests
     version: 3
   },
-  /*
-  ** Axios module configuration
-  ** See https://axios.nuxtjs.org/options
-  */
   axios: {
-    baseURL: process.env.baseUrl || "https://api.com",
+    baseURL: process.env.baseUrl || 'https://api.com',
     retries: 3
   },
-  /*
-  ** vuetify module configuration
-  ** https://github.com/nuxt-community/vuetify-module
-  */
   vuetify: {
-    customVariables: ["~/assets/variables.scss"],
-    optionsPath: "./vuetify.options.js"
+    customVariables: ['~/assets/variables.scss'],
+    optionsPath: './vuetify.options.js'
   },
-  /*
-  ** Build configuration
-  */
   build: {
-    /*
-    ** You can extend webpack config here
-    */
-    extend(config, ctx) {
-    }
+    extend(config, ctx) {}
   },
   generate: {
     fallback: true

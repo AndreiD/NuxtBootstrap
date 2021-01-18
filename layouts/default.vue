@@ -50,36 +50,36 @@ export default {
       fixed: false,
       items: [
         {
-          icon: "apps",
-          title: "Welcome",
-          to: "/",
+          icon: 'apps',
+          title: 'Welcome',
+          to: '/'
         },
         {
-          icon: "bubble_chart",
-          title: "Inspire",
-          to: "/inspire",
+          icon: 'bubble_chart',
+          title: 'Inspire',
+          to: '/inspire'
         },
         {
-          icon: "account_circle",
-          title: "Faq",
-          to: "/faq",
-        },
+          icon: 'account_circle',
+          title: 'Faq',
+          to: '/faq'
+        }
       ],
       miniVariant: false,
       right: false,
       rightDrawer: false,
-      title: "Vuetify.js",
-    };
+      title: 'Vuetify.js'
+    }
   },
   methods: {
     goToUrl(url) {
-      this.$router.push(url);
+      this.$router.push(url)
     },
     goToExternalUrl(url) {
-      window.open(url, "_blank");
-    },
-  },
-};
+      window.open(url, '_blank')
+    }
+  }
+}
 </script>
 <style scoped>
 #styled-input {
